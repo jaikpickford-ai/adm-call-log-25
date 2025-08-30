@@ -1,0 +1,78 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ADM Call Log 25</title>
+  <link rel="manifest" href="manifest.json">
+  <link rel="stylesheet" href="styles.css">
+  <script defer src="app.js"></script>
+</head>
+<body>
+  <header>
+    <div class="brand">
+      <img src="assets/adm-logo.png" alt="ADM" class="logo">
+      <span class="title">ADM Call Log 25</span>
+    </div>
+  </header>
+
+  <main>
+    <div id="timer" class="timer">00:00:00</div>
+    <div id="commentPreview" class="comment-prev"></div>
+    <div class="buttons">
+      <button id="toggleBtn" class="toggle startState">START</button>
+      <button id="commentBtn" class="comment">Comment</button>
+    </div>
+
+    <section class="history">
+      <div class="history-head">
+        <h2>History</h2>
+        <div class="right-actions">
+          <button id="export" class="link-btn" title="Export CSV">Export CSV</button>
+          <button id="backup" class="link-btn" title="Backup JSON">Backup</button>
+          <button id="restoreBtn" class="link-btn" title="Restore JSON">Restore</button>
+          <input type="file" id="restoreFile" accept="application/json" hidden>
+        </div>
+      </div>
+      <ul id="history" class="list"></ul>
+    </section>
+  </main>
+
+  <footer>Data is stored locally on this device.</footer>
+
+  <!-- Edit dialog -->
+  <dialog id="editDialog">
+    <form method="dialog" id="editForm">
+      <h3>Edit entry</h3>
+      <div class="grid">
+        <label>Start date<input id="sd" type="date" required></label>
+        <label>Start time<input id="st" type="time" step="60" required></label>
+        <label>End date<input id="ed" type="date" required></label>
+        <label>End time<input id="et" type="time" step="60" required></label>
+      </div>
+      <div class="muted" id="durPreview">Duration: 00:00:00</div>
+      <label>Comment (max 40)
+        <input id="cm" maxlength="40" placeholder="Comment"/>
+      </label>
+      <menu>
+        <button value="delete" class="btn danger">Delete</button>
+        <span class="spacer"></span>
+        <button value="cancel" class="btn ghost">Cancel</button>
+        <button value="save" class="btn">Save</button>
+      </menu>
+    </form>
+  </dialog>
+
+  <!-- Live comment dialog -->
+  <dialog id="commentDialog">
+    <form method="dialog" id="commentForm">
+      <h3>Set comment (max 40)</h3>
+      <input id="liveComment" maxlength="40" placeholder="e.g., Reset FC102 alarm"/>
+      <menu>
+        <button value="cancel" class="btn ghost">Cancel</button>
+        <button value="save" class="btn">Save</button>
+      </menu>
+    </form>
+  </dialog>
+</body>
+</html>
